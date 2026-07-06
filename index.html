@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <script>
+    if (window.self !== window.top) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      window.addEventListener('message', function(e) {
+        if (e.data && e.data.type === 'poli-theme') {
+          document.documentElement.setAttribute('data-theme', e.data.light ? 'light' : 'dark');
+        }
+      });
+    }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate the return on investment for tattoo and piercing equipment purchases. Enter cost, daily use, and revenue per session to find your payback period and break-even point.">
+  <title>Equipment ROI Calculator | Poli International</title>
+  <link rel="stylesheet" href="/tools/equipment-roi-calculator/css/style.css">
+</head>
+<body>
+<div class="tool-wrapper">
+
+  <header class="tool-header">
+    <div class="tool-header__badge">📈 Equipment ROI</div>
+    <h1>Equipment ROI Calculator</h1>
+    <p>Enter the cost and expected use of a piece of equipment to calculate your payback period, break-even sessions, and annual return.</p>
+  </header>
+
+  <div class="calc-card">
+    <div class="form-grid">
+      <div class="form-field">
+        <label for="equip-name">Equipment Name <span class="opt-label">optional</span></label>
+        <input type="text" id="equip-name" class="input-field" placeholder="e.g. FK Irons Spektra Edge II">
+      </div>
+      <div class="form-field">
+        <label for="equip-cost">Purchase Cost (£)</label>
+        <input type="number" id="equip-cost" class="input-field" value="300" min="0" step="10">
+      </div>
+      <div class="form-field">
+        <label for="sessions-day">Sessions Using This Equipment / Day</label>
+        <input type="number" id="sessions-day" class="input-field" value="4" min="0.5" step="0.5">
+      </div>
+      <div class="form-field">
+        <label for="revenue-session">Revenue per Session (£)</label>
+        <input type="number" id="revenue-session" class="input-field" value="150" min="0" step="10">
+      </div>
+      <div class="form-field">
+        <label for="consumables-session">Consumables Cost per Session (£)</label>
+        <input type="number" id="consumables-session" class="input-field" value="8" min="0" step="1">
+      </div>
+      <div class="form-field">
+        <label for="work-days">Working Days per Week</label>
+        <input type="number" id="work-days" class="input-field" value="5" min="1" max="7">
+      </div>
+      <div class="form-field">
+        <label for="annual-maintenance">Annual Maintenance / Service Cost (£) <span class="opt-label">optional</span></label>
+        <input type="number" id="annual-maintenance" class="input-field" value="0" min="0" step="10">
+      </div>
+      <div class="form-field">
+        <label for="equip-lifespan">Expected Lifespan (years)</label>
+        <input type="number" id="equip-lifespan" class="input-field" value="3" min="1" max="20">
+      </div>
+    </div>
+    <button id="calc-btn" class="primary-btn">Calculate ROI</button>
+  </div>
+
+  <div id="results" style="display:none">
+    <div class="results-row">
+      <div class="metric-card">
+        <div class="metric-label">Payback Period</div>
+        <div id="payback" class="metric-value"></div>
+        <div class="metric-sub">to recover purchase cost</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Break-even Sessions</div>
+        <div id="breakeven-sessions" class="metric-value"></div>
+        <div class="metric-sub">sessions to pay off equipment</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Net Profit / Year</div>
+        <div id="annual-profit" class="metric-value"></div>
+        <div class="metric-sub">after consumables &amp; maintenance</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">ROI over Lifespan</div>
+        <div id="total-roi" class="metric-value"></div>
+        <div class="metric-sub">total return on purchase cost</div>
+      </div>
+    </div>
+    <div id="detail-table" class="detail-table"></div>
+  </div>
+
+</div>
+<script src="/js/input-guards.js"></script>
+<script src="/tools/equipment-roi-calculator/js/app.js"></script>
+</body>
+</html>
