@@ -3,9 +3,10 @@
 <head>
   <meta name="robots" content="noindex, nofollow">
   <script>
+    // Served inside the site's tool frame: take the page's theme, and stay out of the index
+    // because the wrapper page at /equipment-roi-calculator/ is the indexed one.
     if (window.self !== window.top) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      window.addEventListener('message', function(e) {
+      window.addEventListener('message', function (e) {
         if (e.data && e.data.type === 'poli-theme') {
           document.documentElement.setAttribute('data-theme', e.data.light ? 'light' : 'dark');
         }
@@ -14,85 +15,247 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Calculate the return on investment for tattoo and piercing equipment purchases. Enter cost, daily use, and revenue per session to find your payback period and break-even point.">
-  <title>Equipment ROI Calculator | Poli International</title>
-  <link rel="stylesheet" href="/tools/equipment-roi-calculator/css/style.css">
+  <meta name="description" data-i18n-content="doc.meta_description" content="Calculate whether equipment pays for itself and the exact month it crosses over. Accounts for unbudgeted running costs, optional time value, and side-by-side purchase comparisons.">
+  <title data-i18n="doc.title">Equipment ROI Calculator | Poli International</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="tools/shared/theme.css">
+  <link rel="stylesheet" href="tools/shared/print.css" media="print">
+  <link rel="stylesheet" href="tools/shared/a11y.css">
 </head>
 <body>
 <div class="tool-wrapper">
-
   <header class="tool-header">
-    <div class="tool-header__badge">📈 Equipment ROI</div>
-    <h1>Equipment ROI Calculator</h1>
-    <p>Enter the cost and expected use of a piece of equipment to calculate your payback period, break-even sessions, and annual return.</p>
+    <div class="tool-header__badge" data-i18n="header.badge">📈 Equipment ROI V2</div>
+    <h1 data-i18n="header.title">Equipment ROI Calculator</h1>
+    <p data-i18n="header.subtitle">Determine whether studio equipment pays for itself, the exact month it crosses over into net profit, unbudgeted ownership expenses, time saved as money, and side-by-side purchase comparisons.</p>
   </header>
 
-  <div class="calc-card">
+  <!-- Currency Selector & Storage Status Toolbar -->
+  <div class="calc-toolbar" id="calc-toolbar">
+    <div class="currency-selector-group">
+      <label for="currency-select" class="currency-label" data-i18n="form.currency_label">Currency</label>
+      <select id="currency-select" class="currency-select" aria-label="Select currency" data-i18n-aria-label="aria.select_currency">
+        <option value="GBP" data-i18n="curr.gbp">GBP (£)</option>
+        <option value="USD" data-i18n="curr.usd">USD ($)</option>
+        <option value="EUR" data-i18n="curr.eur">EUR (€)</option>
+        <option value="CAD" data-i18n="curr.cad">CAD ($)</option>
+        <option value="AUD" data-i18n="curr.aud">AUD ($)</option>
+      </select>
+    </div>
+    <div class="currency-selector-group">
+      <label for="language-select" class="currency-label" data-i18n="form.language_label">Language</label>
+      <select id="language-select" class="currency-select" aria-label="Select language" data-i18n-aria-label="aria.select_language">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="it">Italiano</option>
+        <option value="es">Español</option>
+        <option value="pt">Português</option>
+        <option value="nl">Nederlands</option>
+      </select>
+    </div>
+    <div class="storage-status-indicator" id="storage-status" aria-live="polite"></div>
+  </div>
+
+  <!-- Section 1: Equipment Core Parameters -->
+  <div class="calc-card" id="section-core">
+    <div class="card-section-header">
+      <span class="step-num">1</span>
+      <h2 data-i18n="section.equip_params">Equipment Parameters</h2>
+    </div>
     <div class="form-grid">
       <div class="form-field">
-        <label for="equip-name">Equipment Name <span class="opt-label">optional</span></label>
-        <input type="text" id="equip-name" class="input-field" placeholder="e.g. FK Irons Spektra Edge II">
+        <label for="equip-name"><span data-i18n="form.equip_name">Equipment Name</span> <span class="opt-label" data-i18n="common.optional">optional</span></label>
+        <input type="text" id="equip-name" class="input-field" placeholder="e.g. Rotary Tattoo Machine / Precision Autoclave" data-i18n-placeholder="placeholder.equip_name">
       </div>
+
       <div class="form-field">
-        <label for="equip-cost">Purchase Cost (£)</label>
-        <input type="number" id="equip-cost" class="input-field" value="300" min="0" step="10">
+        <label for="equip-cost" data-i18n="form.equip_cost">Purchase Cost (£)</label>
+        <input type="number" id="equip-cost" class="input-field" min="0" step="10" placeholder="1200">
       </div>
+
       <div class="form-field">
-        <label for="sessions-day">Sessions Using This Equipment / Day</label>
-        <input type="number" id="sessions-day" class="input-field" value="4" min="0.5" step="0.5">
+        <label for="sessions-day" data-i18n="form.sessions_day">Sessions Using This Equipment / Day</label>
+        <input type="number" id="sessions-day" class="input-field" min="0.5" step="0.5" placeholder="2">
       </div>
+
       <div class="form-field">
-        <label for="revenue-session">Revenue per Session (£)</label>
-        <input type="number" id="revenue-session" class="input-field" value="150" min="0" step="10">
+        <label for="revenue-session" data-i18n="form.rev_session">Gross Revenue per Session (£)</label>
+        <input type="number" id="revenue-session" class="input-field" min="0" step="10" placeholder="80">
       </div>
+
       <div class="form-field">
-        <label for="consumables-session">Consumables Cost per Session (£)</label>
-        <input type="number" id="consumables-session" class="input-field" value="8" min="0" step="1">
+        <label for="consumables-session" data-i18n="form.consumables_session">Consumables Cost per Session (£)</label>
+        <input type="number" id="consumables-session" class="input-field" min="0" step="1" placeholder="0">
       </div>
+
       <div class="form-field">
-        <label for="work-days">Working Days per Week</label>
-        <input type="number" id="work-days" class="input-field" value="5" min="1" max="7">
+        <label for="work-days" data-i18n="form.work_days">Working Days per Week</label>
+        <input type="number" id="work-days" class="input-field" min="1" max="7" placeholder="5">
       </div>
+
       <div class="form-field">
-        <label for="annual-maintenance">Annual Maintenance / Service Cost (£) <span class="opt-label">optional</span></label>
-        <input type="number" id="annual-maintenance" class="input-field" value="0" min="0" step="10">
+        <label for="annual-maintenance"><span data-i18n="form.annual_maintenance">Annual Servicing / Calibration (£)</span> <span class="opt-label" data-i18n="common.optional">optional</span></label>
+        <input type="number" id="annual-maintenance" class="input-field" min="0" step="10" placeholder="0">
       </div>
+
       <div class="form-field">
-        <label for="equip-lifespan">Expected Lifespan (years)</label>
-        <input type="number" id="equip-lifespan" class="input-field" value="3" min="1" max="20">
+        <label for="equip-lifespan" data-i18n="form.equip_lifespan">Expected Lifespan (years)</label>
+        <input type="number" id="equip-lifespan" class="input-field" min="1" max="20" placeholder="5">
       </div>
     </div>
-    <button id="calc-btn" class="primary-btn">Calculate ROI</button>
+    <p class="section-desc" data-i18n="note.volume_basis">Monthly volume is sessions per day x working days per week x 52 weeks / 12 months. Every figure here is yours: nothing is filled in for you.</p>
   </div>
 
-  <div id="results" style="display:none">
-    <div class="results-row">
-      <div class="metric-card">
-        <div class="metric-label">Payback Period</div>
-        <div id="payback" class="metric-value"></div>
-        <div class="metric-sub">to recover purchase cost</div>
+  <!-- Section 2: The Running Costs Nobody Budgets -->
+  <div class="calc-card" id="section-unbudgeted">
+    <div class="card-section-header">
+      <span class="step-num">2</span>
+      <h2 data-i18n="section.unbudgeted_costs">The Running Costs Nobody Budgets</h2>
+    </div>
+    <p class="section-desc" data-i18n="section.unbudgeted_costs_desc">A machine that is cheap to buy is often not cheap to own. Account for electricity, scheduled replacement parts, and wear components alongside session consumables.</p>
+
+    <div class="form-grid">
+      <div class="form-field">
+        <label for="power-cost-month"><span data-i18n="form.power_cost">Power &amp; Electricity Cost (£/month)</span> <span class="opt-label" data-i18n="common.optional">optional</span></label>
+        <input type="number" id="power-cost-month" class="input-field" min="0" step="1" placeholder="e.g. 5" data-i18n-placeholder="placeholder.power_cost">
       </div>
-      <div class="metric-card">
-        <div class="metric-label">Break-even Sessions</div>
-        <div id="breakeven-sessions" class="metric-value"></div>
-        <div class="metric-sub">sessions to pay off equipment</div>
+
+      <div class="form-field">
+        <label for="part-name"><span data-i18n="form.part_name">Known Wear Part Name</span> <span class="opt-label" data-i18n="common.optional">optional</span></label>
+        <input type="text" id="part-name" class="input-field" placeholder="e.g. Drive Cam / Motor / Battery / Gasket" data-i18n-placeholder="placeholder.part_name">
       </div>
-      <div class="metric-card">
-        <div class="metric-label">Net Profit / Year</div>
-        <div id="annual-profit" class="metric-value"></div>
-        <div class="metric-sub">after consumables &amp; maintenance</div>
+
+      <div class="form-field">
+        <label for="part-cost"><span data-i18n="form.part_cost">Replacement Part Cost (£)</span> <span class="opt-label" data-i18n="common.optional">optional</span></label>
+        <input type="number" id="part-cost" class="input-field" min="0" step="5" placeholder="e.g. 45" data-i18n-placeholder="placeholder.part_cost">
       </div>
-      <div class="metric-card">
-        <div class="metric-label">ROI over Lifespan</div>
-        <div id="total-roi" class="metric-value"></div>
-        <div class="metric-sub">total return on purchase cost</div>
+
+      <div class="form-field">
+        <div class="field-label-row">
+          <label for="part-interval"><span data-i18n="form.part_interval">Part Replacement Interval (Months)</span> <span class="opt-label" data-i18n="common.optional">optional</span></label>
+          <div class="tooltip-wrapper">
+            <button type="button" class="tooltip-btn" aria-label="Information about part replacement interval" data-i18n-aria-label="tooltip.part_interval_aria" aria-describedby="tooltip-part-interval" tabindex="0">ℹ</button>
+            <div id="tooltip-part-interval" class="tooltip-popover" role="tooltip" data-i18n="tooltip.part_interval_text">Wear parts (drive cams, springs, gaskets) require periodic replacement. The calculator divides this cost across the interval months to establish an ongoing monthly reserve, ensuring your payback calculation reflects true maintenance overhead.</div>
+          </div>
+        </div>
+        <input type="number" id="part-interval" class="input-field" min="1" max="60" placeholder="e.g. 12" data-i18n-placeholder="placeholder.part_interval">
       </div>
     </div>
-    <div id="detail-table" class="detail-table"></div>
   </div>
 
+  <!-- Section 3: Time Saved as Money -->
+  <div class="calc-card" id="section-time">
+    <div class="card-section-header">
+      <span class="step-num">3</span>
+      <h2 data-i18n="section.time_saved_heading">Time Saved as Money</h2>
+    </div>
+    <p class="section-desc" data-i18n="section.time_saved_desc">Count time savings only if you value your time with an explicit hourly rate. A blank rate means no monetary value is counted.</p>
+
+    <div class="form-grid">
+      <div class="form-field">
+        <div class="field-label-row">
+          <label for="time-saved"><span data-i18n="form.time_saved">Time Saved per Session (Minutes)</span> <span class="opt-label" data-i18n="common.optional">optional</span></label>
+          <div class="tooltip-wrapper">
+            <button type="button" class="tooltip-btn" aria-label="Information about time saved per session" data-i18n-aria-label="tooltip.time_saved_aria" aria-describedby="tooltip-time-saved" tabindex="0">ℹ</button>
+            <div id="tooltip-time-saved" class="tooltip-popover" role="tooltip" data-i18n="tooltip.time_saved_text">Minutes saved per procedure from faster equipment. To keep financial estimates rigorous, time savings are only converted to cash if you specify an hourly rate below. Leaving the rate blank reports hours saved without inflating cash payback.</div>
+          </div>
+        </div>
+        <input type="number" id="time-saved" class="input-field" value="0" min="0" step="5" placeholder="e.g. 15" data-i18n-placeholder="placeholder.time_saved">
+      </div>
+
+      <div class="form-field">
+        <label for="hourly-rate"><span data-i18n="form.hourly_rate">Your Hourly Rate (£/hr)</span> <span class="opt-label" data-i18n="form.hourly_rate_opt">leave blank to omit money value</span></label>
+        <input type="number" id="hourly-rate" class="input-field" value="" min="0" step="5" placeholder="Leave blank if unmonetized" data-i18n-placeholder="placeholder.hourly_rate">
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Side-by-Side Comparison -->
+  <div class="calc-card" id="section-comparison">
+    <div class="card-section-header">
+      <span class="step-num">4</span>
+      <h2 data-i18n="section.compare_heading">Side-by-Side Comparison</h2>
+    </div>
+    <p class="section-desc" data-i18n="section.compare_desc">Evaluate your proposed equipment against an alternative purchase or against Option 0: Not Buying (Status Quo).</p>
+
+    <div class="form-field" style="margin-bottom:1rem;">
+      <label for="compare-mode" data-i18n="form.compare_against">Compare Against:</label>
+      <select id="compare-mode" class="input-field">
+        <option value="no_buy" data-i18n="form.opt_no_buy">Option 0: Do Not Buy (Status Quo / Keep Current Process)</option>
+        <option value="opt_b" data-i18n="form.opt_b_purchase">Option B: Alternative Equipment Purchase</option>
+      </select>
+    </div>
+
+    <div id="opt-b-fields" class="form-grid" style="display:none;">
+      <div class="form-field">
+        <label for="opt-b-name" data-i18n="form.opt_b_name">Option B Equipment Name</label>
+        <input type="text" id="opt-b-name" class="input-field" placeholder="e.g. Budget Rotary Machine" data-i18n-placeholder="placeholder.opt_b_name">
+      </div>
+      <div class="form-field">
+        <label for="opt-b-cost" data-i18n="form.opt_b_cost">Option B Purchase Cost (£)</label>
+        <input type="number" id="opt-b-cost" class="input-field" min="0" step="10" placeholder="2000">
+      </div>
+      <div class="form-field">
+        <label for="opt-b-rev-session" data-i18n="form.opt_b_rev_session">Option B Revenue per Session (£)</label>
+        <input type="number" id="opt-b-rev-session" class="input-field" min="0" step="10" placeholder="90">
+      </div>
+      <div class="form-field">
+        <label for="opt-b-run-month" data-i18n="form.opt_b_run_month">Option B Total Monthly Running Cost (£)</label>
+        <input type="number" id="opt-b-run-month" class="input-field" min="0" step="25" placeholder="120">
+      </div>
+    </div>
+
+    <div class="form-actions-row">
+      <button id="calc-btn" class="primary-btn" type="button" data-i18n="btn.calculate">Calculate ROI &amp; Payback</button>
+      <button id="reset-btn" class="secondary-btn" type="button" data-i18n="btn.reset_all">Reset All Fields</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Dynamic Results Container -->
+  <div id="results" style="display:none"></div>
+
+  <!-- Cross-Tool Navigation / Related Professional Tools -->
+  <section class="related-tools-card" aria-label="Related studio tools" data-i18n-aria-label="related.aria_label">
+    <div class="card-section-header">
+      <span class="step-num">🔗</span>
+      <h2 data-i18n="related.heading">Related Professional Studio Tools</h2>
+    </div>
+    <p class="section-desc" data-i18n="related.desc">Connect this financial analysis with operational calibration and studio compliance tools:</p>
+
+    <div class="related-grid">
+      <div class="related-item">
+        <a href="https://poliinternational.com/machine-maintenance-logbook/" target="_top" class="related-link" data-i18n="related.logbook_title">Machine Maintenance Logbook</a>
+        <p class="related-desc" data-i18n="related.logbook_desc">Track autoclave cycles, motor servicing, needle drive cleaning, and maintenance compliance records.</p>
+      </div>
+
+      <div class="related-item">
+        <a href="https://poliinternational.com/machine-voltage-configurator/" target="_top" class="related-link" data-i18n="related.voltage_title">Machine Voltage Configurator</a>
+        <p class="related-desc" data-i18n="related.voltage_desc">Calibrate voltage settings, stroke length, and needle groupings for coil and rotary machines.</p>
+      </div>
+
+      <div class="related-item">
+        <a href="https://poliinternational.com/tax-deduction-tracker/" target="_top" class="related-link" data-i18n="related.tax_title">Tax Deduction Tracker</a>
+        <p class="related-desc" data-i18n="related.tax_desc">Record capital allowances, equipment asset depreciation, and annual expense write-offs.</p>
+      </div>
+
+      <div class="related-item">
+        <a href="https://poliinternational.com/autoclave-calculator/" target="_top" class="related-link" data-i18n="related.autoclave_title">Autoclave Calculator</a>
+        <p class="related-desc" data-i18n="related.autoclave_desc">Model per-cycle electricity, distilled water, sterilisation pouch, and biological spore indicator expenses.</p>
+      </div>
+    </div>
+  </section>
 </div>
-<script src="/js/input-guards.js"></script>
-<script src="/tools/equipment-roi-calculator/js/app.js"></script>
+
+<!-- Scripts loaded in exact synchronous order -->
+<script src="js/i18n.js"></script>
+<script src="tools/shared/share-card.js"></script>
+<script src="js/input-guards.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/app.js"></script>
+<script src="js/share.js"></script>
 </body>
 </html>
