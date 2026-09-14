@@ -22,14 +22,18 @@ This is a free, open-source widget from the [Poli International Widget Suite](ht
 
 ## ✨ Features
 
-- ✅ **Tattoo Equipment ROI**
-- ✅ **Rotary Machine Payback Period**
-- ✅ **Autoclave ROI Calculation**
-- ✅ **Tattoo Studio Equipment Investment**
-- ✅ **Body Art Equipment Cost**
-- ✅ **Studio Equipment Break-Even**
-- ✅ **Responsive Design** - works on desktop, tablet, and mobile.
-- ✅ **Free & Open Source** - MIT licensed.
+- **Payback period in months**, with the calendar month the investment crosses into profit.
+- **The running costs nobody budgets**: consumables per session, electricity, servicing and a replacement part with a known life.
+- **Time saved as money, only if you price it.** Leave the hourly rate blank and the time is reported in hours, never converted to cash.
+- **Side-by-side comparison**, including Option 0: not buying at all.
+- **Printable business case** for a partner or lender, dated with your local date, with a base / -25% / -50% sensitivity table.
+- **Month-by-month cash recovery schedule** and a 24-month cumulative cash flow chart (inline SVG, no chart library).
+- **CSV export** of the result, and a shareable result link and card.
+- **Seven languages** (English, French, German, Italian, Spanish, Portuguese, Dutch) and five currency symbols, with no currency conversion.
+- **Nothing is pre-filled and nothing is assumed**: a blank required field is an error, not a default.
+- Runs entirely in the browser. No account, no upload, no network call. MIT licensed.
+
+Out of scope on purpose, with links in the tool: maintenance schedules (Machine Maintenance Logbook), voltage and power settings (Machine Voltage Configurator), tax treatment (Tax Deduction Tracker) and autoclave cycle costs (Autoclave Calculator).
 
 ---
 
@@ -76,7 +80,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Get Help
 
-- 📧 **Email**: <support@poliinternational.com>
+- 📧 **Email**: <patrick@poli-international.com>
 - 🐛 **Bug Reports**: [GitHub Issues](https://github.com/Poli-International/equipment-roi-calculator/issues)
 
 ---
