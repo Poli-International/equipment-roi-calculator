@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><meta name="robots" content="noindex,nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geräte-ROI-Rechner Dokumentation | Poli International</title>
+    <meta name="description" content="Ob sich ein Studiogerät selbst bezahlt macht, wann es in die Gewinnzone kommt und was es tatsächlich im Besitz kostet.">
+    <link rel="canonical" href="https://poliinternational.com/equipment-roi-calculator/">
+    <style>
+        body { background: #0f0f0f; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; }
+        body.in-iframe .doc-hero h1 { display: none; }
+        * { box-sizing: border-box; }
+        .entry-content { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
+        .doc-hero { background: linear-gradient(135deg, #3B82F6, #8B5CF6); padding: 3rem 2rem; text-align: center; border-radius: 0.75rem; margin-bottom: 2rem; }
+        .doc-hero h1 { font-size: 2.2rem; margin: 0 0 1rem; font-weight: 700; }
+        .doc-hero p { font-size: 1.15rem; color: #E0E7FF; margin: 0; }
+        .doc-hero .v2 { display: inline-block; margin-bottom: 1rem; padding: 0.2rem 0.75rem; border-radius: 999px; background: #10B981; color: #04241a; font-weight: 800; font-size: 0.8rem; letter-spacing: 0.08em; }
+        .doc-section { margin: 2rem 0; padding: 2rem; background: #1a1a1a; border-radius: 0.75rem; border-left: 4px solid #3B82F6; }
+        .doc-section h2 { color: #60A5FA; font-size: 1.7rem; margin: 0 0 1.25rem; font-weight: 600; }
+        .doc-section h3 { color: #A78BFA; font-size: 1.3rem; margin: 1.75rem 0 0.75rem; font-weight: 600; }
+        .doc-section p, .doc-section li { color: #ccc; line-height: 1.75; font-size: 1.02rem; }
+        .doc-section ul, .doc-section ol { padding-left: 1.5rem; }
+        .doc-section li { margin: 0.4rem 0; }
+        .doc-section code { background: #2a2a2a; padding: 0.1rem 0.35rem; border-radius: 0.25rem; font-size: 0.92em; }
+        .doc-section a { color: #60A5FA; font-weight: 600; }
+        .highlight-box { background: linear-gradient(135deg, #1E3A8A, #4C1D95); padding: 1.25rem 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0; border-left: 4px solid #10B981; }
+        .highlight-box p { color: #E0E7FF; margin: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { padding: 0.75rem; text-align: left; border: 1px solid #333; vertical-align: top; }
+        th { background: #2a2a2a; color: #60A5FA; }
+        td { color: #ccc; }
+    </style>
+</head>
+<body>
+<nav class="doc-langs" aria-label="Sprache der Dokumentation" style="display:flex;flex-wrap:wrap;gap:6px 14px;max-width:900px;margin:12px auto 0;padding:0 16px;font-size:14px;"><a lang="en" href="documentation.html">English</a><a lang="fr" href="documentation-fr.html">Français</a><span lang="de">Deutsch</span><a lang="it" href="documentation-it.html">Italiano</a><a lang="es" href="documentation-es.html">Español</a><a lang="nl" href="documentation-nl.html">Nederlands</a><a lang="pt" href="documentation-pt.html">Português</a><a lang="th" href="documentation-th.html">ไทย</a></nav>
+<script>if (window.self !== window.top) document.body.classList.add('in-iframe');</script>
+    <div class="entry-content">
+        <div class="doc-hero">
+            <span class="v2">V2</span>
+            <h1>Geräte-ROI-Rechner: Benutzerhandbuch</h1>
+            <p>Ob sich ein Studiogerät selbst bezahlt macht, wann es in die Gewinnzone kommt und was es tatsächlich im Besitz kostet.</p>
+        </div>
+        <p>Rechner für Return on Investment (ROI), Cashflow-Wendepunkt und Amortisation von Geräten, veröffentlicht von Poli International für Tätowierer, Piercer und Studioinhaber.</p>
+        <div class="doc-section">
+        <h2>1. Überblick</h2>
+        <p>Der <strong>Geräte-ROI-Rechner V2</strong> berechnet, ob sich ein Studiogerät selbst bezahlt macht, in welchem Monat es in die Gewinnzone kommt, welche nicht eingeplanten Betriebskosten anfallen, wie Zeitersparnisse in Geld bewertet werden und wie sich Alternativgeräte oder der Verzicht auf einen Kauf vergleichen.</p>
+        <p>Wichtigste Funktionen:</p>
+        <ul>
+        <li><strong>Amortisationszeit in Monaten &amp; Erkennung des Wendepunkts</strong>: Modelliert den Cashflow Monat für Monat und ermittelt den genauen Monat, in dem der kumulierte Nettoertrag die anfängliche Anschaffungsausgabe übersteigt.</li>
+        <li><strong>Die Betriebskosten, die niemand einplant</strong>: Berücksichtigt Verbrauchsmaterial pro Sitzung, laufende Stromkosten, jährliche Wartung und Verschleißteile mit festen Austauschintervallen, um die tatsächlichen Gesamtbetriebskosten (TCO) zu berechnen.</li>
+        <li><strong>Zeitersparnis in Geld</strong>: Bewertet Effizienzgewinne nur dann in Geld, wenn ein expliziter Stundensatz angegeben wird. Bleibt das Feld leer, werden Zeitersparnisse nur in Stunden ausgewiesen.</li>
+        <li><strong>Vergleich nebeneinander</strong>: Vergleicht das geplante Gerät mit einem Alternativgerät oder mit <strong>Option 0: Nicht kaufen (Status quo)</strong>.</li>
+        <li><strong>Druckbarer Businessplan</strong>: Erstellt ein Management-Dokument für Kreditgeber und Partner, datiert mit dem lokalen Kalenderdatum, mit Sensitivitätsszenarien und Freigabeblöcken.</li>
+        </ul>
+        <p>Alle Berechnungen laufen zu 100% clientseitig in Ihrem Webbrowser. Keine Finanzdaten verlassen Ihr Gerät.</p>
+        </div>
+        <div class="doc-section">
+        <h2>2. Den Rechner verwenden</h2>
+        <h3>Abschnitt 1: Gerätparameter</h3>
+        <ul>
+        <li><strong>Gerätename</strong> <em>(optional)</em>: Modellbezeichnung zur Identifikation (z. B. Rotationstattoomaschine, Präzisionsautoklav).</li>
+        <li><strong>Anschaffungskosten (£)</strong>: Anfängliche Investitionsausgabe (CapEx).</li>
+        <li><strong>Sitzungen mit diesem Gerät / Tag</strong>: Durchschnittliche Kundenbehandlungen pro Arbeitstag mit diesem Gerät (Minimum 0,5).</li>
+        <li><strong>Bruttoumsatz pro Sitzung (£)</strong>: Honorar pro Kundenbehandlung.</li>
+        <li><strong>Verbrauchsmaterialkosten pro Sitzung (£)</strong>: Einwegmaterial pro Sitzung (Nadelmodule, Schutzfolie, Einweggriffe, Hautvorbereitung).</li>
+        <li><strong>Arbeitstage pro Woche</strong>: Betriebstage pro Woche (1 bis 7).</li>
+        <li><strong>Jährliche Wartung / Kalibrierung (£)</strong> <em>(optional)</em>: Regelmäßige Wartung und Kalibrierung.</li>
+        <li><strong>Erwartete Nutzungsdauer (Jahre)</strong>: Betriebsdauer des Geräts (1 bis 20 Jahre).</li>
+        </ul>
+        <h3>Abschnitt 2: Die Betriebskosten, die niemand einplant</h3>
+        <ul>
+        <li><strong>Strom- und Energiekosten (£/Monat)</strong> <em>(optional)</em>: Dauerhafte Energieaufnahme von Netzteilen, Akkuladung oder Heizspulen.</li>
+        <li><strong>Name und Kosten eines bekannten Verschleißteils (£)</strong> <em>(optional)</em>: Antriebsnocken, Motoreinheiten, Akkuzellen oder Türdichtungen des Autoklaven.</li>
+        <li><strong>Austauschintervall (Monate)</strong> <em>(optional)</em>: Erwartete Nutzungsdauer des Ersatzteils.</li>
+        </ul>
+        <h3>Abschnitt 3: Zeitersparnis in Geld</h3>
+        <ul>
+        <li><strong>Zeitersparnis pro Sitzung (Minuten)</strong> <em>(optional)</em>: Zeitersparnis bei Rüstung, Durchführung oder Abbau.</li>
+        <li><strong>Ihr Stundensatz (£/Std.)</strong> <em>(optional)</em>: Expliziter Geldwert Ihrer Arbeitszeit.</li>
+        <li><em>Strenge Regel</em>: Bleibt das Feld leer, werden Zeitersparnisse in Gesamtstunden pro Jahr erfasst, doch es fließt kein Geldwert in die Amortisation ein.</li>
+        </ul>
+        <h3>Abschnitt 4: Vergleich nebeneinander</h3>
+        <ul>
+        <li>Benchmark auswählen:</li>
+        <li><strong>Option 0: Nicht kaufen (Status quo)</strong>: Modelliert die finanzielle Entwicklung ohne Kauf und zeigt den zusätzlichen Gewinn gegenüber einem Investitionsaufwand von null.</li>
+        <li><strong>Option B: Alternatives Gerät kaufen</strong>: Geben Sie Kaufpreis, Umsatz pro Sitzung und monatliche Betriebskosten ein, um beides nebeneinander zu vergleichen.</li>
+        </ul>
+        <p>Klicken Sie auf <strong>ROI und Amortisation berechnen</strong> um die Analyse zu erstellen.</p>
+        </div>
+        <div class="doc-section">
+        <h2>3. Ergebnis-Dashboard &amp; Visualisierungen</h2>
+        <ol>
+        <li><strong>Hauptkennzahlen</strong>:</li>
+        </ol>
+        <ul>
+        <li><strong>Amortisationszeit</strong>: Dauer in Monaten und exakter Wendemonat (z. B. <code>4.2 mos (Month 5)</code>).</li>
+        <li><strong>Sitzungen bis zur Gewinnschwelle</strong>: Gesamtzahl der Behandlungen, die zur Tilgung der Investitionsausgabe nötig sind.</li>
+        <li><strong>Jährlicher Netto-Cashflow</strong>: Jährlicher Nettogewinn nach Abzug aller Verbrauchsmaterialien, Strom, Wartung und Ersatzteile.</li>
+        <li><strong>Gesamtbetriebskosten (TCO)</strong>: Vollständige Lebenszykluskosten (Kauf + alle Betriebskosten) und tatsächliche Kosten pro Behandlung.</li>
+        </ul>
+        <ol>
+        <li><strong>Eingebettetes SVG-Diagramm des Wendepunkt-Verlaufs</strong>:</li>
+        </ol>
+        <ul>
+        <li>Zeigt die Rückgewinnung der Liquidität von Monat 0 bis zum Ende der Nutzungsdauer.</li>
+        <li>Eigene Nulllinie (£0) als Break-even-Linie und Markierung des Wendepunkts für den Monat, in dem der kumulierte Nettocashflow in die Gewinnzone wechselt.</li>
+        </ul>
+        <ol>
+        <li><strong>TCO-Aufschlüsselungsdiagramm</strong>:</li>
+        </ol>
+        <ul>
+        <li>Gestapelte grafische Aufschlüsselung von Kaufpreis gegenüber Verbrauchsmaterial, Ersatzteilen, Wartung und Strom über die Nutzungsdauer.</li>
+        </ul>
+        <ol>
+        <li><strong>Vergleichende Entscheidungsübersicht</strong>:</li>
+        </ol>
+        <ul>
+        <li>Vergleichendes gruppiertes Balkendiagramm und numerische Abweichungstabelle mit Unterschieden bei CapEx, jährlichen Betriebskosten, jährlichem Nettocashflow und kumulierten Summen über 3 Jahre.</li>
+        </ul>
+        <ol>
+        <li><strong>Monatsplan</strong>:</li>
+        </ol>
+        <ul>
+        <li>Interaktive Tabelle mit Monat, monatlichem Nettocashflow, kumuliertem Saldo und Tilgungsfortschritt.</li>
+        </ul>
+        </div>
+        <div class="doc-section">
+        <h2>4. Druckbarer Businessplan für Kreditgeber und Partner</h2>
+        <p>Klicken Sie auf die Schaltfläche <strong>Finanzierungsplan drucken / PDF speichern</strong> Schaltfläche oder die Browser-Druckfunktion auslösen (<code>Ctrl+P</code> / <code>Cmd+P</code>):</p>
+        <ul>
+        <li>Automatisch für kontrastreichen Schwarz-Weiß-Druck formatiert.</li>
+        <li>Datiert mit dem <strong>lokalen Kalenderdatum des Nutzers</strong>.</li>
+        <li>Enthält eine Investitionszusammenfassung für die Geschäftsleitung, die Aufschlüsselung der Betriebsgemeinkosten, eine Volumensensitivitätsanalyse (Basis 100%, moderat -25%, Abwärtsszenario -50%) und Unterschriftenzeilen für Studioleitung und Finanzierungspartner.</li>
+        </ul>
+        </div>
+        <div class="doc-section">
+        <h2>5. Verwandte Studio-Tools</h2>
+        <p>Verbinden Sie diese ROI-Analyse mit den zugehörigen Betriebs- und Compliance-Instrumenten:</p>
+        <ul>
+        <li><a href="https://poliinternational.com/machine-maintenance-logbook/" target="_top">Wartungsprotokoll für Maschinen</a>: Dokumentation von Wartungen und Reinigungen.</li>
+        <li><a href="https://poliinternational.com/machine-voltage-configurator/" target="_top">Spannungskonfigurator für Maschinen</a>: Spannungseinstellungen und Kalibrierung des Nadelhubs.</li>
+        <li><a href="https://poliinternational.com/tax-deduction-tracker/" target="_top">Steuerabzugs-Tracker</a>: Abschreibungen und Sonderabschreibungen.</li>
+        <li><a href="https://poliinternational.com/autoclave-calculator/" target="_top">Autoklav-Rechner</a>: Kostenmodellierung für Sterilisationszyklen.</li>
+        </ul>
+        </div>
+        <div class="doc-section">
+        <h2>6. Einbettung auf Studio-Websites</h2>
+        <p>Um diesen Rechner in einem iframe auf Ihrer Studio-Website oder Ihrem Portal einzubetten, verwenden Sie den folgenden Code:</p>
+        <p><code>&lt;iframe src="https://poliinternational.com/tools/equipment-roi-calculator/index.html" width="100%" height="850" frameborder="0"&gt;&lt;/iframe&gt; </code></p>
+        </div>
+        <div class="doc-section">
+            <h2>Das Tool verwenden</h2>
+            <p><a href="https://poliinternational.com/equipment-roi-calculator/" target="_top">Öffnen Sie den Geräte-ROI-Rechner: Benutzerhandbuch</a>. Alles läuft in Ihrem Browser; nichts, was Sie eingeben, wird irgendwohin übertragen.</p>
+        </div>
+    </div>
+</body>
+</html>
