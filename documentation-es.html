@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta name="robots" content="noindex,nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación de la Calculadora de ROI de equipamiento | Poli International</title>
+    <meta name="description" content="Si un equipo de estudio se amortiza, cuándo empieza a generar beneficio y cuánto cuesta realmente tenerlo.">
+    <link rel="canonical" href="https://poliinternational.com/equipment-roi-calculator/">
+    <style>
+        body { background: #0f0f0f; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; }
+        body.in-iframe .doc-hero h1 { display: none; }
+        * { box-sizing: border-box; }
+        .entry-content { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
+        .doc-hero { background: linear-gradient(135deg, #3B82F6, #8B5CF6); padding: 3rem 2rem; text-align: center; border-radius: 0.75rem; margin-bottom: 2rem; }
+        .doc-hero h1 { font-size: 2.2rem; margin: 0 0 1rem; font-weight: 700; }
+        .doc-hero p { font-size: 1.15rem; color: #E0E7FF; margin: 0; }
+        .doc-hero .v2 { display: inline-block; margin-bottom: 1rem; padding: 0.2rem 0.75rem; border-radius: 999px; background: #10B981; color: #04241a; font-weight: 800; font-size: 0.8rem; letter-spacing: 0.08em; }
+        .doc-section { margin: 2rem 0; padding: 2rem; background: #1a1a1a; border-radius: 0.75rem; border-left: 4px solid #3B82F6; }
+        .doc-section h2 { color: #60A5FA; font-size: 1.7rem; margin: 0 0 1.25rem; font-weight: 600; }
+        .doc-section h3 { color: #A78BFA; font-size: 1.3rem; margin: 1.75rem 0 0.75rem; font-weight: 600; }
+        .doc-section p, .doc-section li { color: #ccc; line-height: 1.75; font-size: 1.02rem; }
+        .doc-section ul, .doc-section ol { padding-left: 1.5rem; }
+        .doc-section li { margin: 0.4rem 0; }
+        .doc-section code { background: #2a2a2a; padding: 0.1rem 0.35rem; border-radius: 0.25rem; font-size: 0.92em; }
+        .doc-section a { color: #60A5FA; font-weight: 600; }
+        .highlight-box { background: linear-gradient(135deg, #1E3A8A, #4C1D95); padding: 1.25rem 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0; border-left: 4px solid #10B981; }
+        .highlight-box p { color: #E0E7FF; margin: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { padding: 0.75rem; text-align: left; border: 1px solid #333; vertical-align: top; }
+        th { background: #2a2a2a; color: #60A5FA; }
+        td { color: #ccc; }
+    </style>
+</head>
+<body>
+<nav class="doc-langs" aria-label="Idioma de la documentación" style="display:flex;flex-wrap:wrap;gap:6px 14px;max-width:900px;margin:12px auto 0;padding:0 16px;font-size:14px;"><a lang="en" href="documentation.html">English</a><a lang="fr" href="documentation-fr.html">Français</a><a lang="de" href="documentation-de.html">Deutsch</a><a lang="it" href="documentation-it.html">Italiano</a><span lang="es">Español</span><a lang="nl" href="documentation-nl.html">Nederlands</a><a lang="pt" href="documentation-pt.html">Português</a><a lang="th" href="documentation-th.html">ไทย</a></nav>
+<script>if (window.self !== window.top) document.body.classList.add('in-iframe');</script>
+    <div class="entry-content">
+        <div class="doc-hero">
+            <span class="v2">V2</span>
+            <h1>Calculadora de ROI de equipamiento: guía de usuario</h1>
+            <p>Si un equipo de estudio se amortiza, cuándo empieza a generar beneficio y cuánto cuesta realmente tenerlo.</p>
+        </div>
+        <p>Calculadora de retorno de la inversión (ROI), punto de equilibrio de flujo de caja y amortización de equipos, publicada por Poli International para tatuadores, perforadores corporales y propietarios de estudios.</p>
+        <div class="doc-section">
+        <h2>1. Descripción general</h2>
+        <p>El <strong>Calculadora de ROI de equipamiento V2</strong> modela si un equipo de estudio se amortiza, el mes exacto en que empieza a generar beneficio, los gastos operativos no presupuestados, el ahorro de tiempo monetizado y escenarios comparativos frente a otro equipo o a no comprar.</p>
+        <p>Funciones principales:</p>
+        <ul>
+        <li><strong>Plazo de amortización en meses y detección del punto de equilibrio</strong>: Modela el flujo de caja mes a mes e identifica el mes exacto en que los beneficios netos acumulados superan el gasto inicial de compra.</li>
+        <li><strong>Los costes de funcionamiento que nadie presupuesta</strong>: Incluye consumibles por sesión, gastos eléctricos continuos, mantenimiento anual y componentes de desgaste con intervalos de sustitución definidos para calcular el coste total de propiedad real (TCO).</li>
+        <li><strong>El tiempo ahorrado como dinero</strong>: Monetiza la eficiencia de los procedimientos solo si el usuario indica una tarifa horaria explícita. Si el campo está vacío, el ahorro de tiempo se expresa solo en horas.</li>
+        <li><strong>Comparación lado a lado</strong>: Compara el equipo propuesto con otro equipo alternativo o con <strong>Opción 0: no comprar (statu quo)</strong>.</li>
+        <li><strong>Caso de negocio imprimible</strong>: Genera un documento ejecutivo para prestamistas y socios, fechado con la fecha local, con escenarios de sensibilidad y bloques de firma de revisión.</li>
+        </ul>
+        <p>Todos los cálculos se realizan al 100% en el navegador. Ningún dato financiero sale de su dispositivo.</p>
+        </div>
+        <div class="doc-section">
+        <h2>2. Uso de la calculadora</h2>
+        <h3>Sección 1: parámetros del equipo</h3>
+        <ul>
+        <li><strong>Nombre del equipamiento</strong> <em>(opcional)</em>: Nombre del modelo para identificarlo (p. ej., máquina rotativa de tatuaje, autoclave de precisión).</li>
+        <li><strong>Coste de compra (£)</strong>: Gasto de capital inicial (CapEx).</li>
+        <li><strong>Sesiones con este equipo / día</strong>: Promedio de procedimientos a clientes por día laborable con este equipo (mínimo 0,5).</li>
+        <li><strong>Ingreso bruto por sesión (£)</strong>: Tarifa cobrada por procedimiento a cliente.</li>
+        <li><strong>Coste de consumibles por sesión (£)</strong>: Suministros de un solo uso por sesión (cartuchos, film barrera, empuñaduras desechables, preparación de la piel).</li>
+        <li><strong>Días laborables por semana</strong>: Días operativos por semana (de 1 a 7).</li>
+        <li><strong>Mantenimiento / calibración anual (£)</strong> <em>(opcional)</em>: Mantenimiento y calibración periódicos.</li>
+        <li><strong>Vida útil prevista (años)</strong>: Vida útil operativa del equipo (de 1 a 20 años).</li>
+        </ul>
+        <h3>Sección 2: Los costes de funcionamiento que nadie presupuesta</h3>
+        <ul>
+        <li><strong>Coste de energía y electricidad (£/mes)</strong> <em>(opcional)</em>: Consumo energético continuo de fuentes de alimentación, carga de baterías o resistencias de calentamiento.</li>
+        <li><strong>Nombre y coste de una pieza de desgaste conocida (£)</strong> <em>(opcional)</em>: Levas de accionamiento, unidades de motor, celdas de batería o juntas de puerta de autoclave.</li>
+        <li><strong>Frecuencia de sustitución (meses)</strong> <em>(opcional)</em>: Vida útil prevista de la pieza de repuesto.</li>
+        </ul>
+        <h3>Sección 3: El tiempo ahorrado como dinero</h3>
+        <ul>
+        <li><strong>Tiempo ahorrado por sesión (minutos)</strong> <em>(opcional)</em>: Tiempo ahorrado en la preparación, la ejecución o el desmontaje.</li>
+        <li><strong>Su tarifa por hora (£/h)</strong> <em>(opcional)</em>: Valor monetario explícito de su tiempo de trabajo.</li>
+        <li><em>Regla estricta</em>: Si se deja en blanco, el ahorro de tiempo se registra en horas totales al año, pero no se suma ningún valor monetario al plazo de amortización.</li>
+        </ul>
+        <h3>Sección 4: Comparación lado a lado</h3>
+        <ul>
+        <li>Seleccione la referencia:</li>
+        <li><strong>Opción 0: no comprar (statu quo)</strong>: Modela la trayectoria financiera de no comprar, mostrando los beneficios incrementales frente a un desembolso de capital cero.</li>
+        <li><strong>Opción B: adquisición de equipo alternativo</strong>: Introduzca el precio de compra, los ingresos por sesión y el coste de funcionamiento mensual para comparar lado a lado.</li>
+        </ul>
+        <p>Haga clic en <strong>Calcular rentabilidad y amortización</strong> para generar el análisis.</p>
+        </div>
+        <div class="doc-section">
+        <h2>3. Panel de resultados y visualizaciones</h2>
+        <ol>
+        <li><strong>Métricas principales</strong>:</li>
+        </ol>
+        <ul>
+        <li><strong>Plazo de amortización</strong>: Duración en meses y mes exacto del punto de equilibrio (p. ej. <code>4.2 mos (Month 5)</code>).</li>
+        <li><strong>Sesiones para amortizar</strong>: Número total de procedimientos necesarios para amortizar el desembolso de capital.</li>
+        <li><strong>Flujo neto de caja anual</strong>: Beneficio neto anual tras restar todos los consumibles, la energía, el mantenimiento y las piezas de repuesto.</li>
+        <li><strong>Coste total de propiedad (TCO)</strong>: Coste completo del ciclo de vida (compra + todos los gastos operativos) y coste real por procedimiento.</li>
+        </ul>
+        <ol>
+        <li><strong>Gráfico SVG integrado de la trayectoria del punto de equilibrio</strong>:</li>
+        </ol>
+        <ul>
+        <li>Visualiza la recuperación de caja desde el mes 0 hasta el final de la vida útil del equipo.</li>
+        <li>Línea de equilibrio distinta a 0 £ e indicador del punto de cruce que señala el mes exacto en que el efectivo neto acumulado pasa a beneficio neto.</li>
+        </ul>
+        <ol>
+        <li><strong>Gráfico de desglose del TCO</strong>:</li>
+        </ol>
+        <ul>
+        <li>Desglose visual apilado que muestra el precio de compra frente a consumibles, piezas de repuesto, mantenimiento y energía durante la vida útil del equipo.</li>
+        </ul>
+        <ol>
+        <li><strong>Resumen comparativo para la decisión</strong>:</li>
+        </ol>
+        <ul>
+        <li>Gráfico comparativo de barras agrupadas y tabla numérica de variaciones que muestra las diferencias en CapEx, coste operativo anual, caja neta anual y totales acumulados a 3 años.</li>
+        </ul>
+        <ol>
+        <li><strong>Calendario mes a mes</strong>:</li>
+        </ol>
+        <ul>
+        <li>Tabla interactiva con mes, caja neta mensual, saldo acumulado y progreso de la amortización.</li>
+        </ul>
+        </div>
+        <div class="doc-section">
+        <h2>4. Caso de negocio imprimible para prestamistas y socios</h2>
+        <p>Haga clic en el <strong>Imprimir propuesta financiera / Exportar a PDF</strong> botón o iniciar la impresión del navegador (<code>Ctrl+P</code> / <code>Cmd+P</code>):</p>
+        <ul>
+        <li>Formato automático para impresión en blanco y negro de alto contraste.</li>
+        <li>Fechado con la <strong>fecha de calendario local</strong>.</li>
+        <li>Incluye un resumen ejecutivo de inversión, el desglose de gastos operativos, un análisis de sensibilidad del volumen (base 100%, moderado -25%, a la baja -50%) y líneas de firma formales para los responsables del estudio y los socios financieros.</li>
+        </ul>
+        </div>
+        <div class="doc-section">
+        <h2>5. Herramientas relacionadas para el estudio</h2>
+        <p>Conecte este análisis de ROI con los instrumentos operativos y de cumplimiento relacionados:</p>
+        <ul>
+        <li><a href="https://poliinternational.com/machine-maintenance-logbook/" target="_top">Registro de mantenimiento de máquinas</a>: Seguimiento de servicios y registros de limpieza.</li>
+        <li><a href="https://poliinternational.com/machine-voltage-configurator/" target="_top">Configurador de voltaje de máquinas</a>: Ajustes de voltaje y calibraciones de la carrera de aguja.</li>
+        <li><a href="https://poliinternational.com/tax-deduction-tracker/" target="_top">Seguimiento de deducciones fiscales</a>: Amortizaciones fiscales y depreciaciones.</li>
+        <li><a href="https://poliinternational.com/autoclave-calculator/" target="_top">Calculadora de autoclave</a>: Modelado del coste de los ciclos de esterilización.</li>
+        </ul>
+        </div>
+        <div class="doc-section">
+        <h2>6. Inserción en sitios web de estudios</h2>
+        <p>Para insertar esta calculadora en un iframe en la web o portal de su estudio, use el siguiente fragmento:</p>
+        <p><code>&lt;iframe src="https://poliinternational.com/tools/equipment-roi-calculator/index.html" width="100%" height="850" frameborder="0"&gt;&lt;/iframe&gt; </code></p>
+        </div>
+        <div class="doc-section">
+            <h2>Use la herramienta</h2>
+            <p><a href="https://poliinternational.com/equipment-roi-calculator/" target="_top">Abra la Calculadora de ROI de equipamiento: guía de usuario</a>. Todo se ejecuta en su navegador; nada de lo que introduzca se envía a ningún sitio.</p>
+        </div>
+    </div>
+</body>
+</html>
