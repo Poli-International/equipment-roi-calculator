@@ -271,7 +271,7 @@ var Charts = (function () {
       lossNote.setAttribute('fill', 'var(--toast-error)');
       lossNote.setAttribute('font-size', '11');
       lossNote.setAttribute('font-weight', '700');
-      lossNote.textContent = 'Operating at Loss: Zero Crossover';
+      lossNote.textContent = window.t ? window.t('chart.operating_at_loss') : 'Operating at Loss: Zero Crossover';
       svg.appendChild(lossNote);
     }
 
