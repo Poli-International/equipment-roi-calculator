@@ -82,7 +82,7 @@ function showToast(title, message, suggestion, type) {
   var icon = document.createElement('span');
   icon.className = 'toast-icon';
   icon.setAttribute('aria-hidden', 'true');
-  icon.textContent = type === 'error' ? '⚠️' : 'ℹ️';
+  icon.innerHTML = type === 'error' ? '<svg class=ti-i width=1.15em height=1.15em aria-hidden=true style=vertical-align:-.18em;flex:none><use href=../shared/icons.svg#i-warn></use></svg>' : '<svg class=ti-i width=1.15em height=1.15em aria-hidden=true style=vertical-align:-.18em;flex:none><use href=../shared/icons.svg#i-info></use></svg>';
 
   var titleEl = document.createElement('strong');
   titleEl.className = 'toast-title';
