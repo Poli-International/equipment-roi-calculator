@@ -246,7 +246,7 @@ var Charts = (function () {
         badgeText.setAttribute('font-weight', '700');
         badgeText.textContent = window.t
           ? window.t('chart.crossover_month_exact', { month: crossoverExact.toFixed(1) })
-          : '★ Break-Even: Month ' + crossoverExact.toFixed(1);
+          : 'Break-Even: Month ' + crossoverExact.toFixed(1);
         svg.appendChild(badgeText);
       } else {
         // Crossover is beyond 24 months
